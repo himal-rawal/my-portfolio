@@ -1,11 +1,8 @@
 import 'dart:math';
 
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:myportfolio/achievemet_page.dart';
 import 'package:myportfolio/bio.dart';
-import 'package:myportfolio/clock.dart';
 import 'package:myportfolio/clock_viewmodel.dart';
 import 'package:myportfolio/colors.dart';
 import 'package:myportfolio/education_page.dart';
@@ -49,108 +46,100 @@ class MyPortfolio extends StatelessWidget {
     print("1");
     return Scaffold(
         body: Container(
-      decoration: const BoxDecoration(
-          image:
-              DecorationImage(image: AssetImage("1.jpg"), fit: BoxFit.cover)),
+      decoration: const BoxDecoration(color: Color(0xff252526)),
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Container(
-            margin: const EdgeInsets.all(20),
-            height: double.maxFinite,
-            //color: Colors.lightGreen,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Container(
-                      padding: const EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                          color: Colors.white10,
-                          borderRadius: BorderRadius.circular(20)
-                          //backgroundBlendMode: BlendMode.lighten,
-                          ),
-                      height: MediaQuery.of(context).size.height * 0.3,
-                      width: MediaQuery.of(context).size.width * 0.2,
-                      child: Column(
-                        children: [
-                          const CircleAvatar(
-                            radius: 30,
-                            backgroundImage: AssetImage("/him.jpeg"),
-                          ),
-                          const SizedBox(height: 10),
-                          AnimatedTextKit(
-                            //pause: const Duration(seconds: 5),
-                            repeatForever: true,
-                            animatedTexts: [
-                              TypewriterAnimatedText(
-                                  speed: const Duration(milliseconds: 500),
-                                  "Hello, it's me Himal Rawal",
-                                  textStyle: const TextStyle(
-                                    // fontFamily: 'Canterbury',
-                                    color: Colors.black,
-                                  )),
-                            ],
-                          ),
-                        ],
-                      )),
-                ],
-              ),
+          // Container(
+          //   margin: const EdgeInsets.all(20),
+          //   height: double.maxFinite,
+          //   //color: Colors.lightGreen,
+          //   child: Padding(
+          //     padding: const EdgeInsets.all(8.0),
+          //     child: Column(
+          //       crossAxisAlignment: CrossAxisAlignment.end,
+          //       children: [
+          //         Container(
+          //             padding: const EdgeInsets.all(8),
+          //             decoration: BoxDecoration(
+          //                 color: Colors.white10,
+          //                 borderRadius: BorderRadius.circular(20)
+          //                 //backgroundBlendMode: BlendMode.lighten,
+          //                 ),
+          //             height: MediaQuery.of(context).size.height * 0.3,
+          //             width: MediaQuery.of(context).size.width * 0.2,
+          //             child: Column(
+          //               children: [
+          //                 const CircleAvatar(
+          //                   radius: 30,
+          //                   backgroundImage: AssetImage("/him.jpeg"),
+          //                 ),
+          //                 const SizedBox(height: 10),
+          //                 AnimatedTextKit(
+          //                   //pause: const Duration(seconds: 5),
+          //                   repeatForever: true,
+          //                   animatedTexts: [
+          //                     TypewriterAnimatedText(
+          //                         speed: const Duration(milliseconds: 500),
+          //                         "Hello, it's me Himal Rawal",
+          //                         textStyle: const TextStyle(
+          //                           // fontFamily: 'Canterbury',
+          //                           color: Colors.black,
+          //                         )),
+          //                   ],
+          //                 ),
+          //               ],
+          //             )),
+          //       ],
+          //     ),
+          //   ),
+          // ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width * 0.30,
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                return Stack(
+                  children: [
+                    SizedBox(
+                        height: constraints.maxHeight,
+                        width: MediaQuery.of(context).size.width * 0.30,
+                        child: FittedBox(
+                            fit: BoxFit.cover, child: Image.asset("/ios.png"))),
+                    Positioned(
+                        //height: MediaQuery.of(context).size.height * 0.84,
+                        // width: MediaQuery.of(context).size.width * 0.21,
+                        bottom: constraints.maxHeight * 0.09,
+                        top: constraints.maxHeight * 0.09,
+                        right: constraints.maxWidth * 0.12,
+                        left: constraints.maxWidth * 0.12,
+                        child: showPage(context,
+                            context.watch<PortfolioViewmodel>().showPage))
+                  ],
+                );
+              },
             ),
           ),
-          Row(
-            children: [
-              Stack(children: [
-                Positioned(
-                  height: MediaQuery.of(context).size.height * 0.92,
-                  width: MediaQuery.of(context).size.width * 0.22,
-                  top: MediaQuery.of(context).size.height * 0.04,
-                  left: MediaQuery.of(context).size.width * 0.018,
-                  child: Container(
-                    color: const Color(0xff252526),
-                  ),
-                ),
-                Container(
-                  height: MediaQuery.of(context).size.height * 8,
-                  width: MediaQuery.of(context).size.width * 0.26,
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: AssetImage("/ios.png"),
-                    ),
-                  ),
-                ),
-                Positioned(
-                    height: MediaQuery.of(context).size.height * 0.84,
-                    width: MediaQuery.of(context).size.width * 0.21,
-                    top: MediaQuery.of(context).size.height * 0.09,
-                    left: MediaQuery.of(context).size.width * 0.025,
-                    child: showPage(
-                        context, context.watch<PortfolioViewmodel>().showPage))
-              ]),
-            ],
-          ),
-          Container(
-            margin: const EdgeInsets.all(20),
-            height: double.maxFinite,
-            //color: Colors.greenAccent,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Clock(),
-                  //const SizedBox(height: 20),
-                  Text(DateFormat('EEEE, MMM d, yyyy').format(DateTime.now()),
-                      style: const TextStyle(
-                          color: Colors.white, fontWeight: FontWeight.w700)),
-                ],
-              ),
-            ),
-          )
+          // Container(
+          //   margin: const EdgeInsets.all(20),
+          //   height: double.maxFinite,
+          //   //color: Colors.greenAccent,
+          //   child: Padding(
+          //     padding: const EdgeInsets.all(8.0),
+          //     child: Column(
+          //       crossAxisAlignment: CrossAxisAlignment.start,
+          //       children: [
+          //         const Clock(),
+          //         //const SizedBox(height: 20),
+          //         Text(DateFormat('EEEE, MMM d, yyyy').format(DateTime.now()),
+          //             style: const TextStyle(
+          //                 color: Colors.white, fontWeight: FontWeight.w700)),
+          //       ],
+          //     ),
+          //   ),
+          // )
         ],
       ),
     ));
