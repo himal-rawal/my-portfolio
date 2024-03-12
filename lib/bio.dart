@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:myportfolio/enum.dart';
 import 'package:myportfolio/portfolio_viewmodel.dart';
+import 'package:myportfolio/responsivewidgets/responsive_text.dart';
 import 'package:provider/provider.dart';
 
 class BioPage extends StatelessWidget {
@@ -19,9 +20,12 @@ class BioPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const SizedBox(width: 20),
-                const Text(
-                  "About Me",
-                  style: TextStyle(color: Colors.white, fontSize: 18),
+                const ResponsiveText(
+                  text: "About Me",
+                  color: Colors.white,
+                  maxFontSize: 18,
+                  minFontSize: 14,
+                  //style: TextStyle(color: Colors.white, fontSize: 18),
                 ),
                 GestureDetector(
                   onTap: () {

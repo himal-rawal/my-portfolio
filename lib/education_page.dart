@@ -9,6 +9,7 @@ class EducationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: MediaQuery.of(context).size.height * 0.8,
       padding: const EdgeInsets.all(8),
       //color: Colors.amber,
       child: SingleChildScrollView(
