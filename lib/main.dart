@@ -45,9 +45,7 @@ class MyPortfolio extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Responsive Container over Image'),
-        ),
+        backgroundColor: const Color(0xff252526),
         body: Center(
           child: AspectRatio(
             aspectRatio: 1.0, // Maintain aspect ratio of 1:1
@@ -59,6 +57,7 @@ class MyPortfolio extends StatelessWidget {
                   fit: BoxFit.cover,
                   child: Image.asset(
                     '/ios.png',
+                    fit: BoxFit.cover,
                   ),
                 ),
                 // Container positioned at the center of the image
@@ -67,7 +66,7 @@ class MyPortfolio extends StatelessWidget {
                     widthFactor: 0.40, // 50% width of the parent (image)
                     heightFactor: 0.84, // 50% height of the parent (image)
                     child: Container(
-                      color: Colors.blue.withOpacity(0.5),
+                      //color: Colors.blue.withOpacity(0.5),
                       child: showPage(context,
                           context.watch<PortfolioViewmodel>().showPage),
                     ),

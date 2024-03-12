@@ -24,7 +24,7 @@ class BioPage extends StatelessWidget {
                   text: "About Me",
                   color: Colors.white,
                   maxFontSize: 18,
-                  minFontSize: 14,
+                  minFontSize: 10,
                   //style: TextStyle(color: Colors.white, fontSize: 18),
                 ),
                 GestureDetector(
@@ -74,9 +74,13 @@ class BioPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            const Text(
-              "I am a passonate developer willing to make people's life easier with Mobile Apps.\n\nCurrently I am working as junior mobile app developer in Vanillatech. I have completed my Bachelor of Technology in Computer Science Engineering from Uttarakhand Technical University. \n\nI am creative thinker who loves to explore different genre of techology. I am not only limited to mobile app development I have explored different genre of tehcnology like cyber security, backend development and data engineering.\n\nI love playing mobile games,playing cricket, solving DSA problems and doing CTF.Though I have not got opportunity to explore new places but I do enjoy exploring new places ,new culture ",
-              style: TextStyle(fontSize: 18, color: Colors.white),
+            const ResponsiveText(
+              text:
+                  "I am a passonate developer willing to make people's life easier with Mobile Apps.\n\nCurrently I am working as junior mobile app developer in Vanillatech. I have completed my Bachelor of Technology in Computer Science Engineering from Uttarakhand Technical University. \n\nI am creative thinker who loves to explore different genre of techology. I am not only limited to mobile app development I have explored different genre of tehcnology like cyber security, backend development and data engineering.\n\nI love playing mobile games,playing cricket, solving DSA problems and doing CTF.Though I have not got opportunity to explore new places but I do enjoy exploring new places ,new culture ",
+              maxFontSize: 18,
+              minFontSize: 10,
+              color: Colors.white,
+              // style: TextStyle(fontSize: 18, color: Colors.white),
             )
           ],
         ),

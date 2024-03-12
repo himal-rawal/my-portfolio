@@ -26,7 +26,7 @@ class ResponsiveText extends StatelessWidget {
             screenWidth / 20; // You can adjust this ratio for your needs
         final double finalFontSize = fontSize.clamp(minFontSize,
             maxFontSize); // Ensure font size stays within defined bounds
-
+        print("finalsize:$finalFontSize");
         return Text(
           text,
           style: TextStyle(fontSize: finalFontSize, color: color),

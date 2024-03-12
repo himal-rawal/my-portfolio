@@ -46,16 +46,12 @@ class SkillsPage extends StatelessWidget {
               color: Colors.green,
             ),
             const SizedBox(height: 10),
-            Row(
+            Wrap(
               children: [
                 _buildSkillContainer(color: Colors.green, skill: "dart"),
-                _buildSkillContainer(color: Colors.pink, skill: "C"),
                 _buildSkillContainer(color: Colors.teal, skill: "Java Script"),
-                _buildSkillContainer(color: Colors.blueGrey, skill: "Python")
-              ],
-            ),
-            Row(
-              children: [
+                _buildSkillContainer(color: Colors.blueGrey, skill: "Python"),
+                _buildSkillContainer(color: Colors.pink, skill: "C"),
                 _buildSkillContainer(color: Colors.pink, skill: "Java"),
                 _buildSkillContainer(color: Colors.purple, skill: "Swift"),
               ],
@@ -70,12 +66,12 @@ class SkillsPage extends StatelessWidget {
               color: Colors.green,
             ),
             const SizedBox(height: 10),
-            Row(
+            Wrap(
               children: [
                 _buildSkillContainer(color: Colors.green, skill: "Flutter"),
                 _buildSkillContainer(color: Colors.teal, skill: "React Js"),
                 _buildSkillContainer(color: Colors.teal, skill: "Node Js"),
-                _buildSkillContainer(color: Colors.blueGrey, skill: "Flask")
+                _buildSkillContainer(color: Colors.blueGrey, skill: "Flask"),
               ],
             ),
             const SizedBox(height: 20),
@@ -88,19 +84,15 @@ class SkillsPage extends StatelessWidget {
               color: Colors.green,
             ),
             const SizedBox(height: 10),
-            _buildSkillContainer(
-                color: Colors.green,
-                skill: "Integration Testing and Unit Testiing Flutter"),
-            Row(
+            Wrap(
               children: [
+                _buildSkillContainer(
+                    color: Colors.green,
+                    skill: "Integration Testing and Unit Testiing Flutter"),
                 _buildSkillContainer(color: Colors.indigoAccent, skill: "Git"),
                 _buildSkillContainer(color: Colors.indigo, skill: "Github"),
                 _buildSkillContainer(
-                    color: Colors.orange, skill: "Github Action")
-              ],
-            ),
-            Row(
-              children: [
+                    color: Colors.orange, skill: "Github Action"),
                 _buildSkillContainer(
                     color: Colors.deepPurple, skill: "Codemagic"),
                 _buildSkillContainer(color: Colors.purple, skill: "Firebase"),
@@ -117,34 +109,38 @@ class SkillsPage extends StatelessWidget {
               color: Colors.green,
             ),
             const SizedBox(height: 10),
-            Row(
+            Wrap(
               children: [
                 _buildSkillContainer(
                     color: Colors.orange, skill: "Web App Penetration Testing"),
                 _buildSkillContainer(color: Colors.orange, skill: "Burpsuite"),
               ],
-            )
+            ),
           ],
         ),
       ),
     );
   }
 
-  Container _buildSkillContainer(
-      {required Color color, required String skill}) {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-      padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 10),
-      height: 30,
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.circular(15),
-        //border: Border.all(color: color),
+  Widget _buildSkillContainer({required Color color, required String skill}) {
+    return Wrap(children: [
+      Container(
+        margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+        padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 10),
+        // height: 30,
+        constraints: const BoxConstraints(maxHeight: 60),
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(15),
+          //border: Border.all(color: color),
+        ),
+        child: Text(
+          skill,
+          maxLines: 20,
+          softWrap: true,
+          style: const TextStyle(color: Colors.white),
+        ),
       ),
-      child: Text(
-        skill,
-        style: const TextStyle(color: Colors.white),
-      ),
-    );
+    ]);
   }
 }
