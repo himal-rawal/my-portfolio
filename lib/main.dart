@@ -145,65 +145,69 @@ class MyPortfolio extends StatelessWidget {
     ));
   }
 
-  Container _buildHomePgae(BuildContext context) {
-    return Container(
-      //color: Colors.amber,
-      child: Column(
-        children: [
-          const SizedBox(height: 20),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              _categoryItem(context,
-                  icon: Icons.person,
-                  title: "About Me",
+  Widget _buildHomePgae(BuildContext context) {
+    return FittedBox(
+      fit: BoxFit.cover,
+      child: SizedBox(
+        height: MediaQuery.of(context).size.height * 0.8,
+        //color: Colors.amber,
+        child: Column(
+          children: [
+            const SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                _categoryItem(context,
+                    icon: Icons.person,
+                    title: "About Me",
+                    onTap: () => context
+                        .read<PortfolioViewmodel>()
+                        .setPortfolioPage(PortfolioViewEnum.bioDataPage)),
+                _categoryItem(
+                  context,
+                  icon: Icons.business_center,
+                  title: "Experience",
                   onTap: () => context
                       .read<PortfolioViewmodel>()
-                      .setPortfolioPage(PortfolioViewEnum.bioDataPage)),
-              _categoryItem(
-                context,
-                icon: Icons.business_center,
-                title: "Experience",
-                onTap: () => context
-                    .read<PortfolioViewmodel>()
-                    .setPortfolioPage(PortfolioViewEnum.experiencePage),
-              ),
-              _categoryItem(
-                context,
-                icon: Icons.view_list_rounded,
-                title: "Skills",
-                onTap: () => context
-                    .read<PortfolioViewmodel>()
-                    .setPortfolioPage(PortfolioViewEnum.skillPage),
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              _categoryItem(
-                context,
-                icon: Icons.workspace_premium_outlined,
-                title: "Achievment",
-                onTap: () => context
-                    .read<PortfolioViewmodel>()
-                    .setPortfolioPage(PortfolioViewEnum.achievementPage),
-              ),
-              _categoryItem(
-                context,
-                icon: Icons.school,
-                title: "Education",
-                onTap: () => context
-                    .read<PortfolioViewmodel>()
-                    .setPortfolioPage(PortfolioViewEnum.educationPage),
-              ),
-              const SizedBox(
-                height: 100,
-                width: 100,
-              )
-            ],
-          ),
-        ],
+                      .setPortfolioPage(PortfolioViewEnum.experiencePage),
+                ),
+                _categoryItem(
+                  context,
+                  icon: Icons.view_list_rounded,
+                  title: "Skills",
+                  onTap: () => context
+                      .read<PortfolioViewmodel>()
+                      .setPortfolioPage(PortfolioViewEnum.skillPage),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                _categoryItem(
+                  context,
+                  icon: Icons.workspace_premium_outlined,
+                  title: "Achievment",
+                  onTap: () => context
+                      .read<PortfolioViewmodel>()
+                      .setPortfolioPage(PortfolioViewEnum.achievementPage),
+                ),
+                _categoryItem(
+                  context,
+                  icon: Icons.school,
+                  title: "Education",
+                  onTap: () => context
+                      .read<PortfolioViewmodel>()
+                      .setPortfolioPage(PortfolioViewEnum.educationPage),
+                ),
+                const SizedBox(
+                  height: 100,
+                  width: 100,
+                )
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
