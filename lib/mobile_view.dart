@@ -1,84 +1,84 @@
 import 'dart:math';
 
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:myportfolio/achievemet_page.dart';
 import 'package:myportfolio/bio.dart';
-import 'package:myportfolio/clock_viewmodel.dart';
 import 'package:myportfolio/colors.dart';
 import 'package:myportfolio/education_page.dart';
 import 'package:myportfolio/enum.dart';
 import 'package:myportfolio/experience.dart';
-import 'package:myportfolio/mobile_view.dart';
 import 'package:myportfolio/portfolio_viewmodel.dart';
 import 'package:myportfolio/skills_page.dart';
 import 'package:provider/provider.dart';
 
-void main() {
-  runApp(MultiProvider(providers: [
-    ChangeNotifierProvider<PortfolioViewmodel>(
-        create: (_) => PortfolioViewmodel()),
-    ChangeNotifierProvider<ClockViewmodel>(create: (_) => ClockViewmodel()),
-  ], child: const MyApp()));
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    print("1");
-    return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        useMaterial3: false,
-      ),
-      home: MediaQuery.of(context).size.width <= 500
-          ? const MobileBrowserView()
-          : const MyPortfolio(),
-    );
-  }
-}
-
-class MyPortfolio extends StatelessWidget {
-  const MyPortfolio({super.key});
+class MobileBrowserView extends StatelessWidget {
+  const MobileBrowserView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        backgroundColor: const Color(0xff252526),
-        body: Center(
-          child: AspectRatio(
-            aspectRatio: 1.0, // Maintain aspect ratio of 1:1
-            child: Stack(
-              fit: StackFit.expand,
-              children: [
-                // Image widget
-                FittedBox(
-                  fit: BoxFit.cover,
-                  child: Image.asset(
-                    '/ios.png',
-                    fit: BoxFit.cover,
-                  ),
+    return Scaffold(
+      backgroundColor: const Color(0xff252526),
+      drawer: Drawer(
+        backgroundColor: Colors.white,
+        child: ListView(
+          children: [
+            DrawerHeader(
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(10),
+                    bottomRight: Radius.circular(10)),
+                color: Colors.white,
+              ),
+              child: SizedBox(
+                width: double.infinity,
+                child: Image.asset(
+                  "tenor1.gif",
+                  fit: BoxFit.contain,
+                  colorBlendMode: BlendMode.saturation,
                 ),
-                // Container positioned at the center of the image
-                Center(
-                  child: FractionallySizedBox(
-                    widthFactor: 0.40, // 50% width of the parent (image)
-                    heightFactor: 0.84, // 50% height of the parent (image)
-                    child: Container(
-                      //color: Colors.blue.withOpacity(0.5),
-                      child: showPage(context,
-                          context.watch<PortfolioViewmodel>().showPage),
-                    ),
-                  ),
-                ),
-              ],
+              ),
             ),
-          ),
+            Center(
+                child: SizedBox(
+              child: AnimatedTextKit(repeatForever: true, animatedTexts: [
+                TypewriterAnimatedText("You took forever to reach me ",
+                    speed: const Duration(milliseconds: 300))
+              ]),
+            )),
+            ListTile(
+              tileColor: Colors.brown,
+              title: const Text('About Me'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+          ],
         ),
+      ),
+      appBar: context.watch<PortfolioViewmodel>().showPage ==
+              PortfolioViewEnum.homePage
+          ? AppBar(
+              leading: Builder(builder: (context) {
+                return IconButton(
+                    icon: const Icon(Icons.dashboard),
+                    onPressed: () => Scaffold.of(context).openDrawer());
+              }),
+              backgroundColor: const Color(0xff252526),
+              elevation: 4,
+              shadowColor: Colors.grey.shade100,
+            )
+          : null,
+      // appBar: AppBar(
+
+      //   title: const Text(
+      //     "My Bio",
+      //     style: TextStyle(fontWeight: FontWeight.w700),
+      //   ),
+      // ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: showPage(context, context.watch<PortfolioViewmodel>().showPage),
       ),
     );
   }
@@ -202,4 +202,26 @@ class MyPortfolio extends StatelessWidget {
       ),
     );
   }
+
+  // showAppBar(PortfolioViewEnum viewPage) {
+  //   switch (viewPage) {
+  //     case PortfolioViewEnum.bioDataPage:
+  //       return "About Me";
+  //     case PortfolioViewEnum.homePage:
+  //       return "Himal's Bio";
+
+  //     case PortfolioViewEnum.experiencePage:
+  //       return "My Experience";
+
+  //     case PortfolioViewEnum.educationPage:
+  //       return "My Education";
+  //     case PortfolioViewEnum.skillPage:
+  //       return "My Skills";
+  //     case PortfolioViewEnum.achievementPage:
+  //       return "My Achievments";
+
+  //     default:
+  //       print('choose a different number!');
+  //       return const Text("data");
+  //   }
 }

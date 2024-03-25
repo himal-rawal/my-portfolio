@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:myportfolio/enum.dart';
 import 'package:myportfolio/portfolio_viewmodel.dart';
+import 'package:myportfolio/responsivewidgets/responsive_text.dart';
 import 'package:provider/provider.dart';
 
 class EducationPage extends StatelessWidget {
@@ -50,24 +51,41 @@ class EducationPage extends StatelessWidget {
               children: [
                 Container(height: 40, width: 2, color: Colors.cyan),
                 const SizedBox(width: 20),
-                const Column(
+                Column(
                   //mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      "Bachelor Of Technology \nComputer Science Engineering (CSE)",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 16),
+                    ResponsiveText(
+                      text:
+                          "Bachelor Of Technology \nComputer Science Engineering (CSE)",
+                      maxFontSize: 16,
+                      minFontSize: 12,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w700,
+                      giveHeightWidth: true,
+                      maxWidth: MediaQuery.of(context).size.width * 0.31,
+                      // style: TextStyle(
+                      //     color: Colors.white,
+                      //     fontWeight: FontWeight.w700,
+                      //     fontSize: 16),
                     ),
-                    Text(
-                      "Uttarakhand Tecchnical University",
-                      style: TextStyle(color: Colors.cyan),
+                    ResponsiveText(
+                      text: "Uttarakhand Tecchnical University",
+                      maxFontSize: 14,
+                      minFontSize: 10,
+                      color: Colors.cyan,
+                      giveHeightWidth: true,
+                      maxWidth: MediaQuery.of(context).size.width * 0.31,
+                      //style: TextStyle(color: Colors.cyan),
                     ),
-                    Text(
-                      "2017 - 2021 | Deheradun, India",
-                      style: TextStyle(color: Colors.white),
+                    ResponsiveText(
+                      text: "2017 - 2021 | Deheradun, India",
+                      maxFontSize: 8,
+                      minFontSize: 6,
+                      giveHeightWidth: true,
+                      color: Colors.white,
+                      maxWidth: MediaQuery.of(context).size.width * 0.31,
+                      //style: const TextStyle(color: Colors.white),
                     ),
                   ],
                 ),
@@ -84,20 +102,36 @@ class EducationPage extends StatelessWidget {
                   //mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      "Intermediate Schooling \nMajor:Science",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 16),
+                    ResponsiveText(
+                      text: "Intermediate Schooling \nMajor:Science",
+                      maxFontSize: 16,
+                      minFontSize: 12,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w700,
+                      giveHeightWidth: true,
+                      maxWidth: MediaQuery.of(context).size.width * 0.31,
+                      // style: TextStyle(
+                      //     color: Colors.white,
+                      //     fontWeight: FontWeight.w700,
+                      //     fontSize: 16),
                     ),
-                    const Text(
-                      "Radiant Higher Secondary School",
-                      style: TextStyle(color: Colors.green),
+                    ResponsiveText(
+                      text: "Radiant Higher Secondary School",
+                      maxFontSize: 14,
+                      minFontSize: 10,
+                      giveHeightWidth: true,
+                      color: Colors.green,
+                      maxWidth: MediaQuery.of(context).size.width * 0.31,
+                      // style: TextStyle(color: Colors.green),
                     ),
-                    Text(
-                      "2015 - 2017 | Kacchanpur, Nepal",
-                      style: TextStyle(color: Colors.grey.shade400),
+                    ResponsiveText(
+                      text: "2015 - 2017 | Kanchanpur, Nepal",
+                      maxFontSize: 8,
+                      minFontSize: 6,
+                      giveHeightWidth: true,
+                      color: Colors.grey.shade400,
+                      maxWidth: MediaQuery.of(context).size.width * 0.31,
+                      //style: TextStyle(color: Colors.grey.shade400),
                     ),
                   ],
                 ),
@@ -114,20 +148,36 @@ class EducationPage extends StatelessWidget {
                   //mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      "School Leaving Certificate \n(SLC)",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 16),
+                    ResponsiveText(
+                      text: "School Leaving Certificate \n(SLC)",
+                      maxFontSize: 16,
+                      minFontSize: 12,
+                      fontWeight: FontWeight.w700,
+                      giveHeightWidth: true,
+                      color: Colors.white,
+                      maxWidth: MediaQuery.of(context).size.width * 0.31,
+                      // style: TextStyle(
+                      //     color: Colors.white,
+                      //     fontWeight: FontWeight.w700,
+                      //     fontSize: 16),
                     ),
-                    const Text(
-                      "Shree New Saraswati Vidya Mandir Airy",
-                      style: TextStyle(color: Colors.purple),
+                    ResponsiveText(
+                      text: "Shree New Saraswati Vidya Mandir Airy",
+                      maxFontSize: 14,
+                      minFontSize: 10,
+                      giveHeightWidth: true,
+                      color: Colors.purple,
+                      maxWidth: MediaQuery.of(context).size.width * 0.31,
+                      //style: TextStyle(color: Colors.purple),
                     ),
-                    Text(
-                      "2003 - 2015 | Kanchanpur, Nepal",
-                      style: TextStyle(color: Colors.grey.shade400),
+                    ResponsiveText(
+                      text: "2003 - 2015 | Kanchanpur, Nepal",
+                      maxFontSize: 8,
+                      minFontSize: 6,
+                      giveHeightWidth: true,
+                      color: Colors.grey.shade400,
+                      maxWidth: MediaQuery.of(context).size.width * 0.31,
+                      //style: TextStyle(color: Colors.grey.shade400),
                     ),
                   ],
                 ),

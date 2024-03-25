@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:myportfolio/enum.dart';
 import 'package:myportfolio/portfolio_viewmodel.dart';
+import 'package:myportfolio/responsivewidgets/responsive_text.dart';
 import 'package:provider/provider.dart';
 
 class ExperiencePage extends StatelessWidget {
@@ -18,9 +19,14 @@ class ExperiencePage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const SizedBox(width: 20),
-                const Text(
-                  "My Experience",
-                  style: TextStyle(color: Colors.white, fontSize: 18),
+                const ResponsiveText(
+                  maxFontSize: 18,
+                  minFontSize: 14,
+
+                  color: Colors.white,
+
+                  text: "My Experience",
+                  //style: TextStyle(color: Colors.white, fontSize: 18),
                 ),
                 GestureDetector(
                   onTap: () {
@@ -54,30 +60,50 @@ class ExperiencePage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      "Junior Flutter Developer",
-                      maxLines: 3,
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 16),
+                    ResponsiveText(
+                      text: "Junior Flutter Developer",
+                      maxFontSize: 16,
+                      minFontSize: 12,
+                      giveHeightWidth: true,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w700,
+                      maxWidth: MediaQuery.of(context).size.width * 0.31,
+
+                      // style: TextStyle(
+                      //     color: Colors.white,
+                      //     fontWeight: FontWeight.w700,
+                      //     fontSize: 16),
                     ),
-                    const Text(
-                      "Vanillatech Pvt Ltd",
-                      style: TextStyle(color: Colors.cyan),
+                    ResponsiveText(
+                      text: "Vanillatech Pvt Ltd",
+                      maxFontSize: 14,
+                      minFontSize: 10,
+                      giveHeightWidth: true,
+                      color: Colors.cyan,
+                      maxWidth: MediaQuery.of(context).size.width * 0.31,
+                      // style: TextStyle(color: Colors.cyan),
                     ),
-                    const Text(
-                      '''06/07/2023 - current | Kathmanddu, Nepal''',
-                      maxLines: 3,
-                      softWrap: false,
-                      style: TextStyle(color: Colors.grey),
+                    ResponsiveText(
+                      text: '''06/07/2023 - current | Kathmanddu, Nepal''',
+                      maxFontSize: 10,
+                      minFontSize: 6,
+                      giveHeightWidth: true,
+                      color: Colors.grey,
+                      maxWidth: MediaQuery.of(context).size.width * 0.31,
+                      //style: TextStyle(color: Colors.grey),
                     ),
                     const SizedBox(height: 20),
                     context.watch<PortfolioViewmodel>().hideExperienceDetail
                         ? const SizedBox.shrink()
-                        : const Text(
-                            "- Done CI/CD \n - worked i multiple project",
-                            style: TextStyle(color: Colors.white),
+                        : ResponsiveText(
+                            text:
+                                "- Done CI/CD \n - worked in multiple project",
+                            maxFontSize: 16,
+                            minFontSize: 8,
+                            giveHeightWidth: true,
+                            color: Colors.white,
+                            maxWidth: MediaQuery.of(context).size.width * 0.31,
+                            // style: TextStyle(color: Colors.white),
                           ),
                   ],
                 ),
