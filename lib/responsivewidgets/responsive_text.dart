@@ -24,35 +24,43 @@ class ResponsiveText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (BuildContext context, BoxConstraints constraints) {
-        // Get the available width
-        final screenWidth = MediaQuery.of(context).size.width;
+    return MediaQuery.of(context).size.width <= 500
+        ? Text(
+            text,
+            style:
+                TextStyle(fontSize: 18, color: color, fontWeight: fontWeight),
+          )
+        : LayoutBuilder(
+            builder: (BuildContext context, BoxConstraints constraints) {
+              // Get the available width
+              final screenWidth = MediaQuery.of(context).size.width;
 
-        // Calculate the fontSize based on screen width
-        final double fontSize =
-            screenWidth / 100; // You can adjust this ratio for your needs
-        final double finalFontSize = fontSize.clamp(minFontSize,
-            maxFontSize); // Ensure font size stays within defined bounds
-        print("finalsize:$finalFontSize");
-        if (giveHeightWidth == true) {
-          return Container(
-              constraints: BoxConstraints(
-                  maxHeight: maxHeight ?? double.infinity,
-                  maxWidth: maxWidth ?? double.infinity),
-              child: Text(text,
+              // Calculate the fontSize based on screen width
+              final double fontSize =
+                  screenWidth / 100; // You can adjust this ratio for your needs
+              final double finalFontSize = fontSize.clamp(minFontSize,
+                  maxFontSize); // Ensure font size stays within defined bounds
+              print("finalsize:$finalFontSize");
+              if (giveHeightWidth == true) {
+                return Container(
+                    constraints: BoxConstraints(
+                        maxHeight: maxHeight ?? double.infinity,
+                        maxWidth: maxWidth ?? double.infinity),
+                    child: Text(text,
+                        style: TextStyle(
+                            fontSize: finalFontSize,
+                            color: color,
+                            fontWeight: fontWeight)));
+              } else {
+                return Text(
+                  text,
                   style: TextStyle(
                       fontSize: finalFontSize,
                       color: color,
-                      fontWeight: fontWeight)));
-        } else {
-          return Text(
-            text,
-            style: TextStyle(
-                fontSize: finalFontSize, color: color, fontWeight: fontWeight),
+                      fontWeight: fontWeight),
+                );
+              }
+            },
           );
-        }
-      },
-    );
   }
 }

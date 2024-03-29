@@ -2,12 +2,12 @@ import 'dart:math';
 
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
-import 'package:myportfolio/achievemet_page.dart';
 import 'package:myportfolio/bio.dart';
 import 'package:myportfolio/colors.dart';
-import 'package:myportfolio/education_page.dart';
 import 'package:myportfolio/enum.dart';
-import 'package:myportfolio/experience.dart';
+import 'package:myportfolio/mobile/acchievment_mobile.dart';
+import 'package:myportfolio/mobile/education_mobile.dart';
+import 'package:myportfolio/mobile/experience_mobile.dart';
 import 'package:myportfolio/portfolio_viewmodel.dart';
 import 'package:myportfolio/skills_page.dart';
 import 'package:provider/provider.dart';
@@ -43,22 +43,36 @@ class MobileBrowserView extends StatelessWidget {
                 child: SizedBox(
               child: AnimatedTextKit(repeatForever: true, animatedTexts: [
                 TypewriterAnimatedText("You took forever to reach me ",
+                    textStyle: const TextStyle(color: Colors.white),
                     speed: const Duration(milliseconds: 300))
               ]),
             )),
-            ListTile(
-              tileColor: Colors.brown,
-              title: const Text('About Me'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
+            Align(
+              child: Container(
+                height: 50,
+                width: 100,
+                decoration: BoxDecoration(
+                    color: Colors.deepPurple.shade300,
+                    borderRadius: BorderRadius.circular(30)),
+                child: const Center(
+                  child: Text(
+                    "About Me",
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 14),
+                  ),
+                ),
+              ),
+            )
           ],
         ),
       ),
       appBar: context.watch<PortfolioViewmodel>().showPage ==
               PortfolioViewEnum.homePage
           ? AppBar(
+              title: const Text("Himal's Portfolio"),
+              centerTitle: true,
               leading: Builder(builder: (context) {
                 return IconButton(
                     icon: const Icon(Icons.dashboard),
@@ -91,14 +105,14 @@ class MobileBrowserView extends StatelessWidget {
         return _buildHomePgae(context);
 
       case PortfolioViewEnum.experiencePage:
-        return const ExperiencePage();
+        return const ExperiencePageMobile();
 
       case PortfolioViewEnum.educationPage:
-        return const EducationPage();
+        return const EducationPageMobile();
       case PortfolioViewEnum.skillPage:
         return const SkillsPage();
       case PortfolioViewEnum.achievementPage:
-        return const AchievemetPage();
+        return const AchievemetPageMobile();
 
       default:
         print('choose a different number!');
