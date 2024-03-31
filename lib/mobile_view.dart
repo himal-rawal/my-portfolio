@@ -34,8 +34,8 @@ class MobileBrowserView extends StatelessWidget {
               ),
               child: SizedBox(
                 width: double.infinity,
-                child: Image.asset(
-                  "tenor1.gif",
+                child: Image.network(
+                  "https://i.ibb.co/mDMXnWx/tenor1.gif",
                   fit: BoxFit.contain,
                   colorBlendMode: BlendMode.saturation,
                 ),
