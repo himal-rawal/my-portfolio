@@ -53,7 +53,18 @@ class MobileBrowserView extends StatelessWidget {
             _drawerListItem(title: "About Me"),
             Align(
               child: GestureDetector(
-                onTap: () {},
+                onTap: () async {
+                  final Uri url = Uri(
+                    scheme: "mailto",
+                    path: "himalrawal07@gmail.com",
+                    query: encodeQueryParameters({
+                      'subject': 'I want to hire you',
+                    }),
+                  );
+                  if (!await launchUrl(url)) {
+                    throw Exception('Could not launch $url');
+                  }
+                },
                 child: Container(
                   height: 50,
                   width: 150,
@@ -174,6 +185,13 @@ class MobileBrowserView extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  String? encodeQueryParameters(Map<String, String> params) {
+    return params.entries
+        .map((MapEntry<String, String> e) =>
+            '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}')
+        .join('&');
   }
 
   Widget showPage(BuildContext context, PortfolioViewEnum viewPage) {
