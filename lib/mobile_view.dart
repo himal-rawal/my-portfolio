@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:myportfolio/bio.dart';
 import 'package:myportfolio/colors.dart';
 import 'package:myportfolio/enum.dart';
@@ -11,6 +12,7 @@ import 'package:myportfolio/mobile/experience_mobile.dart';
 import 'package:myportfolio/portfolio_viewmodel.dart';
 import 'package:myportfolio/skills_page.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MobileBrowserView extends StatelessWidget {
   const MobileBrowserView({super.key});
@@ -43,25 +45,39 @@ class MobileBrowserView extends StatelessWidget {
                 child: SizedBox(
               child: AnimatedTextKit(repeatForever: true, animatedTexts: [
                 TypewriterAnimatedText("You took forever to reach me ",
-                    textStyle: const TextStyle(color: Colors.white),
+                    textStyle: const TextStyle(
+                        color: Colors.black, fontWeight: FontWeight.w700),
                     speed: const Duration(milliseconds: 300))
               ]),
             )),
+            _drawerListItem(title: "About Me"),
             Align(
-              child: Container(
-                height: 50,
-                width: 100,
-                decoration: BoxDecoration(
-                    color: Colors.deepPurple.shade300,
-                    borderRadius: BorderRadius.circular(30)),
-                child: const Center(
-                  child: Text(
-                    "About Me",
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w700,
-                        fontSize: 14),
+              child: GestureDetector(
+                onTap: () {},
+                child: Container(
+                  height: 50,
+                  width: 150,
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: Colors.green[100],
+                    borderRadius: BorderRadius.circular(30),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.greenAccent.shade100,
+                        offset: const Offset(
+                          5.0,
+                          5.0,
+                        ),
+                        blurRadius: 10.0,
+                        spreadRadius: 2.0,
+                      ), //BoxShadow
+                    ],
                   ),
+                  child: const Center(
+                      child: Text(
+                    "Hire Me",
+                    style: TextStyle(fontWeight: FontWeight.w700),
+                  )),
                 ),
               ),
             )
@@ -93,6 +109,69 @@ class MobileBrowserView extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: showPage(context, context.watch<PortfolioViewmodel>().showPage),
+      ),
+    );
+  }
+
+  Align _drawerListItem({void Function()? onTap, String? title}) {
+    return Align(
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          height: 100,
+          margin: const EdgeInsets.all(20),
+          padding: const EdgeInsets.all(8),
+          decoration: BoxDecoration(
+            color: Colors.green[100],
+            borderRadius: BorderRadius.circular(30),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.greenAccent.shade100,
+                offset: const Offset(
+                  5.0,
+                  5.0,
+                ),
+                blurRadius: 10.0,
+                spreadRadius: 2.0,
+              ), //BoxShadow
+            ],
+          ),
+          child: Column(
+            children: [
+              Text(
+                // "About Me",
+                title ?? "",
+                style: const TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 14),
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                "       My name is Himal Rawal.          ",
+                style:
+                    TextStyle(color: Colors.black, fontWeight: FontWeight.w600),
+              ),
+              AnimatedTextKit(repeatForever: true, animatedTexts: [
+                TypewriterAnimatedText("Learner",
+                    cursor: " |",
+                    textStyle: const TextStyle(
+                        color: Colors.green, fontWeight: FontWeight.w700),
+                    speed: const Duration(milliseconds: 300)),
+                TypewriterAnimatedText("Software Developer",
+                    cursor: " |",
+                    textStyle: const TextStyle(
+                        color: Colors.green, fontWeight: FontWeight.w700),
+                    speed: const Duration(milliseconds: 300)),
+                TypewriterAnimatedText("Cyber Security Enthusiast",
+                    cursor: " |",
+                    textStyle: const TextStyle(
+                        color: Colors.green, fontWeight: FontWeight.w700),
+                    speed: const Duration(milliseconds: 300))
+              ]),
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -171,6 +250,85 @@ class MobileBrowserView extends StatelessWidget {
                   .read<PortfolioViewmodel>()
                   .setPortfolioPage(PortfolioViewEnum.educationPage),
             ),
+            _categoryItem(context, icon: Icons.facebook_rounded,
+                onTap: () async {
+              final Uri url =
+                  Uri.parse("https://www.facebook.com/himal.rawal.969/");
+              if (!await launchUrl(url)) {
+                throw Exception('Could not launch $url');
+              }
+            },
+                iconUrl:
+                    "https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Facebook_colored_svg_copy-1024.png",
+                socialMedia: true,
+                socialMediaColor: Colors.blue,
+                title: "Facebook"),
+            _categoryItem(context,
+                iconUrl:
+                    "https://cdn1.iconfinder.com/data/icons/logotypes/32/circle-linkedin-1024.png",
+                onTap: () async {
+              final Uri url =
+                  Uri.parse("https://www.linkedin.com/in/himal-rawal/");
+              if (!await launchUrl(url)) {
+                throw Exception('Could not launch $url');
+              }
+            },
+                socialMedia: true,
+                socialMediaColor: Colors.blue,
+                title: "Linkedin"),
+            _categoryItem(context,
+                iconUrl:
+                    "https://cdn3.iconfinder.com/data/icons/2018-social-media-logotypes/1000/2018_social_media_popular_app_logo_instagram-1024.png",
+                onTap: () async {
+              final Uri url =
+                  Uri.parse("https://www.instagram.com/himalrawal07/");
+              if (!await launchUrl(url)) {
+                throw Exception('Could not launch $url');
+              }
+            },
+                socialMedia: true,
+                socialMediaColor: Colors.blue,
+                title: "Instagram"),
+            _categoryItem(context,
+                iconUrl:
+                    "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-social-github-1024.png",
+                onTap: () async {
+              final Uri url = Uri.parse("https://github.com/himal-rawal");
+              if (!await launchUrl(url)) {
+                throw Exception('Could not launch $url');
+              }
+            },
+                socialMedia: true,
+                socialMediaColor: Colors.white,
+                title: "Github"),
+
+            _categoryItem(context,
+                lottieUrl:
+                    "https://lottie.host/b51acb5e-be5b-49a8-a2d6-45b9b1d4a911/XfWGbGRmkp.json",
+                onTap: () async {
+              final Uri url =
+                  Uri(scheme: "mailto", path: "himalrawal07@gmail.com");
+              if (!await launchUrl(url)) {
+                throw Exception('Could not launch $url');
+              }
+            },
+                socialMedia: true,
+                socialMediaColor: Colors.white,
+                title: "Contact me"),
+
+            _categoryItem(context,
+                lottieUrl:
+                    "https://lottie.host/c25d8252-e672-4851-8807-ad26375142fa/KwbWhH5wDZ.json",
+                onTap: () async {
+              final Uri url = Uri.parse(
+                  "https://drive.google.com/uc?export=download&id=1PdZEG4-ipayU1zxF6fLh3l3dLLo563z8");
+              if (!await launchUrl(url)) {
+                throw Exception('Could not launch $url');
+              }
+            },
+                socialMedia: true,
+                socialMediaColor: Colors.white,
+                title: "Download Resume")
             // Add more icons as needed
           ],
         );
@@ -179,42 +337,87 @@ class MobileBrowserView extends StatelessWidget {
   }
 
   GestureDetector _categoryItem(BuildContext context,
-      {void Function()? onTap, IconData? icon, String? title}) {
-    return GestureDetector(
-      onTap: onTap,
-      // () {
-      //   context
-      //       .read<PortfolioViewmodel>()
-      //       .setPortfolioPage(PortfolioViewEnum.bioDataPage);
-      // },
-      child: SizedBox(
-        height: 100,
-        width: 100,
-        child: Column(
-          children: [
-            CircleAvatar(
-              radius: 23,
-              backgroundColor: colorsList[Random().nextInt(6)],
-              child: Icon(
-                size: 30,
-                icon,
-                // Icons.person,
-                color: Colors.white,
+      {void Function()? onTap,
+      IconData? icon,
+      String? title,
+      bool socialMedia = false,
+      Color? socialMediaColor,
+      String iconUrl = '',
+      String lottieUrl = ''}) {
+    return socialMedia
+        ? GestureDetector(
+            onTap: onTap,
+            child: SizedBox(
+              height: 100,
+              width: 100,
+              child: Column(
+                children: [
+                  CircleAvatar(
+                    radius: 23,
+                    backgroundColor: socialMediaColor,
+                    child: lottieUrl.isNotEmpty
+                        ? Lottie.network(lottieUrl)
+                        : iconUrl.isNotEmpty
+                            ? Image.network(iconUrl)
+                            : Icon(
+                                size: 30,
+                                icon,
+                                // Icons.person,
+                                color: Colors.white,
+                              ),
+                  ),
+                  const SizedBox(height: 8),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      textAlign: TextAlign.center,
+                      // "About Me",
+                      title ?? "",
+                      style: const TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 12,
+                          color: Colors.white),
+                    ),
+                  )
+                ],
               ),
             ),
-            const SizedBox(height: 8),
-            Text(
-              // "About Me",
-              title ?? "",
-              style: const TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 12,
-                  color: Colors.white),
-            )
-          ],
-        ),
-      ),
-    );
+          )
+        : GestureDetector(
+            onTap: onTap,
+            // () {
+            //   context
+            //       .read<PortfolioViewmodel>()
+            //       .setPortfolioPage(PortfolioViewEnum.bioDataPage);
+            // },
+            child: SizedBox(
+              height: 100,
+              width: 100,
+              child: Column(
+                children: [
+                  CircleAvatar(
+                    radius: 23,
+                    backgroundColor: colorsList[Random().nextInt(6)],
+                    child: Icon(
+                      size: 30,
+                      icon,
+                      // Icons.person,
+                      color: Colors.white,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    // "About Me",
+                    title ?? "",
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 12,
+                        color: Colors.white),
+                  )
+                ],
+              ),
+            ),
+          );
   }
 
   // showAppBar(PortfolioViewEnum viewPage) {

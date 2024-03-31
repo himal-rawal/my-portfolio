@@ -21,7 +21,7 @@ class ExperiencePage extends StatelessWidget {
                 const SizedBox(width: 20),
                 const ResponsiveText(
                   maxFontSize: 18,
-                  minFontSize: 14,
+                  minFontSize: 18,
 
                   color: Colors.white,
 
@@ -56,56 +56,60 @@ class ExperiencePage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(height: 40, width: 2, color: Colors.cyan),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    ResponsiveText(
-                      text: "Junior Flutter Developer",
-                      maxFontSize: 16,
-                      minFontSize: 12,
-                      giveHeightWidth: true,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w700,
-                      maxWidth: MediaQuery.of(context).size.width * 0.31,
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      ResponsiveText(
+                        text: "Junior Flutter Developer",
+                        maxFontSize: 16,
+                        minFontSize: 12,
+                        giveHeightWidth: true,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w700,
+                        maxWidth: MediaQuery.of(context).size.width * 0.31,
 
-                      // style: TextStyle(
-                      //     color: Colors.white,
-                      //     fontWeight: FontWeight.w700,
-                      //     fontSize: 16),
-                    ),
-                    ResponsiveText(
-                      text: "Vanillatech Pvt Ltd",
-                      maxFontSize: 14,
-                      minFontSize: 10,
-                      giveHeightWidth: true,
-                      color: Colors.cyan,
-                      maxWidth: MediaQuery.of(context).size.width * 0.31,
-                      // style: TextStyle(color: Colors.cyan),
-                    ),
-                    ResponsiveText(
-                      text: '''06/07/2023 - current | Kathmanddu, Nepal''',
-                      maxFontSize: 10,
-                      minFontSize: 6,
-                      giveHeightWidth: true,
-                      color: Colors.grey,
-                      maxWidth: MediaQuery.of(context).size.width * 0.31,
-                      //style: TextStyle(color: Colors.grey),
-                    ),
-                    const SizedBox(height: 20),
-                    context.watch<PortfolioViewmodel>().hideExperienceDetail
-                        ? const SizedBox.shrink()
-                        : ResponsiveText(
-                            text:
-                                "- Done CI/CD \n - worked in multiple project",
-                            maxFontSize: 16,
-                            minFontSize: 8,
-                            giveHeightWidth: true,
-                            color: Colors.white,
-                            maxWidth: MediaQuery.of(context).size.width * 0.31,
-                            // style: TextStyle(color: Colors.white),
-                          ),
-                  ],
+                        // style: TextStyle(
+                        //     color: Colors.white,
+                        //     fontWeight: FontWeight.w700,
+                        //     fontSize: 16),
+                      ),
+                      ResponsiveText(
+                        text: "Vanillatech Pvt Ltd",
+                        maxFontSize: 14,
+                        minFontSize: 10,
+                        giveHeightWidth: true,
+                        color: Colors.cyan,
+                        maxWidth: MediaQuery.of(context).size.width * 0.31,
+                        // style: TextStyle(color: Colors.cyan),
+                      ),
+                      ResponsiveText(
+                        text: '''06/07/2023 - current | Kathmanddu, Nepal''',
+                        maxFontSize: 10,
+                        minFontSize: 6,
+                        giveHeightWidth: true,
+                        color: Colors.grey,
+                        maxWidth: MediaQuery.of(context).size.width * 0.31,
+                        //style: TextStyle(color: Colors.grey),
+                      ),
+                      const SizedBox(height: 20),
+                      context.watch<PortfolioViewmodel>().hideExperienceDetail
+                          ? const SizedBox.shrink()
+                          : ResponsiveText(
+                              text:
+                                  "- worked in multiple project \n- worked with highly proficient team",
+                              maxFontSize: 16,
+                              minFontSize: 8,
+                              giveHeightWidth: true,
+                              color: Colors.white,
+                              maxWidth:
+                                  MediaQuery.of(context).size.width * 0.31,
+                              // style: TextStyle(color: Colors.white),
+                            ),
+                    ],
+                  ),
                 ),
                 GestureDetector(
                     onTap: () {
@@ -113,10 +117,16 @@ class ExperiencePage extends StatelessWidget {
                           .read<PortfolioViewmodel>()
                           .setExperienceDetailVisibility();
                     },
-                    child: const Icon(
-                      Icons.keyboard_arrow_down_rounded,
-                      color: Colors.white,
-                    ))
+                    child:
+                        context.watch<PortfolioViewmodel>().hideExperienceDetail
+                            ? const Icon(
+                                Icons.keyboard_arrow_down_rounded,
+                                color: Colors.white,
+                              )
+                            : const Icon(
+                                Icons.keyboard_arrow_up_rounded,
+                                color: Colors.white,
+                              ))
               ],
             )
           ],

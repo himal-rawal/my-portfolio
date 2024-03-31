@@ -93,7 +93,7 @@ class AchievemetPageMobile extends StatelessWidget {
                 children: [
                   Container(
                     constraints: BoxConstraints(
-                        maxWidth: MediaQuery.of(context).size.width * 0.21),
+                        maxWidth: MediaQuery.of(context).size.width * 0.50),
                     child: Text(
                       title,
                       maxLines: 3,

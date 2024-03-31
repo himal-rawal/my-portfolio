@@ -24,7 +24,7 @@ class BioPage extends StatelessWidget {
                   text: "About Me",
                   color: Colors.white,
                   maxFontSize: 18,
-                  minFontSize: 10,
+                  minFontSize: 18,
                   //style: TextStyle(color: Colors.white, fontSize: 18),
                 ),
                 GestureDetector(
@@ -43,7 +43,8 @@ class BioPage extends StatelessWidget {
             const SizedBox(height: 20),
             const CircleAvatar(
               radius: 50,
-              backgroundImage: AssetImage("/him.jpeg"),
+              backgroundImage: NetworkImage(
+                  "https://scontent.fktm16-1.fna.fbcdn.net/v/t1.15752-9/433842336_393236060308662_4798174647125361728_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=PvN4_DdkPXwAX_91Eih&_nc_ht=scontent.fktm16-1.fna&oh=03_AdTEGrQp3qKQ21vCgSga5ol7SEJHg_82PoEcf920m7ZTIw&oe=6630ADF9"),
             ),
             const SizedBox(height: 20),
             RichText(

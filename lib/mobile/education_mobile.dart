@@ -15,6 +15,7 @@ class EducationPageMobile extends StatelessWidget {
       //color: Colors.amber,
       child: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
